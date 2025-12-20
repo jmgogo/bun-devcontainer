@@ -1,15 +1,21 @@
+# Varients include: debian, slim, alpine, distroless, canary, and a mix there-in
 ARG VARIANT=latest
 FROM oven/bun:${VARIANT}
 
-RUN apt-get update \
-    && apt-get -y install --no-install-recommends \
+# Update package registry and install necessary packages
+RUN apt update \
+    && apt install -y --no-install-recommends \
+    # Install openssh-client for SSH connections
+    openssh-client \
+    # Include ca-certificates for SSL/TLS connections
     ca-certificates \
+    # Install git
     git \
-    nano \
-    vim-tiny \
-    && apt-get auto-remove -y \
-    && apt-get clean -y \
-    && chsh -s $(which bash) bun \
-    && echo 'export PS1="\e[01;32m\u\e[m:\e[01;34m\w\e[m\$ "' >> /home/bun/.bashrc
+    # Clean up apt cache and remove unused packages
+    && apt auto-remove -y \
+    && apt clean -y 
+    # Changes default shell to bash for the bun user
+    && chsh -s $(which bash) bun 
 
+# Prefer to run as non-root user
 USER bun
