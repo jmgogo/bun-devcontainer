@@ -13,9 +13,15 @@ RUN apt update \
     git \
     # Clean up apt cache and remove unused packages
     && apt auto-remove -y \
-    && apt clean -y 
+    && apt clean -y \
     # Changes default shell to bash for the bun user
     && chsh -s $(which bash) bun 
 
 # Prefer to run as non-root user
 USER bun
+
+# Set working directory to the home directory of the bun user
+WORKDIR /home/bun
+
+# Default command to keep the container running
+CMD ["sleep", "infinity"]
