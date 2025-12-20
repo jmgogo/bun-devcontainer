@@ -1,8 +1,7 @@
 {
-    "name": "Bun",
+    "name": "bun-bind",
     "build": {
         "dockerfile": "Dockerfile",
-        // Update 'VARIANT' to pick a Bun version.
         "args": {
             "VARIANT": "latest"
         }
@@ -10,7 +9,14 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "dbaeumer.vscode-eslint"
+                // Linting for Javascript and TypeScript
+                "dbaeumer.vscode-eslint",
+                // Code formatting
+                "esbenp.prettier-vscode",
+                // Spell checking
+                "streetsidesoftware.code-spell-checker",
+                // Make typeScript errors human-readable
+                "yoavbls.pretty-ts-errors"
             ]
         }
     }
