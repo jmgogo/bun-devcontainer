@@ -13,7 +13,7 @@ RUN apt update \
     git \
     # Clean up apt cache and remove unused packages
     && apt auto-remove -y \
-    && apt clean -y 
+    && apt clean -y  \
     # Changes default shell to bash for the bun user
     && chsh -s $(which bash) bun 
 
