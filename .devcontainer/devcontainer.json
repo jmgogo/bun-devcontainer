@@ -1,11 +1,10 @@
 {
-    "name": "bun-bind",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "args": {
-            "VARIANT": "latest"
-        }
-    },
+    "name": "bun",
+    "dockerComposeFile": [
+        "./compose.yaml"
+    ],
+    "service": "bun-devcontainer",
+    "workspaceFolder": "/home/bun",
     "customizations": {
         "vscode": {
             "extensions": [
@@ -19,5 +18,6 @@
                 "yoavbls.pretty-ts-errors"
             ]
         }
-    }
+    },
+    "shutdownAction": "stopCompose"
 }

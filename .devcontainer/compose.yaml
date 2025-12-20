@@ -1,0 +1,20 @@
+# Visit the Docker compose reference guide for more information
+# https://docs.docker.com/compose/compose-file/
+
+services:
+  bun-devcontainer:
+    image: bun-devcontainer:development
+    container_name: bun-devcontainer
+    hostname: bun-devcontainer
+    # build image from Dockerfile
+    build: .
+    volumes:
+      # bind devcontainer files to container for reference
+      - ../.devcontainer/:/home/bun/.devcontainer/
+      # bind workspace volume to clone bun projects
+      - bun-devcontainer:/home/bun
+
+volumes:
+  bun-devcontainer:
+    name: bun-workspace
+    driver: local
